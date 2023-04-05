@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.muhsanjaved.twowaydatabinding.BindingUtils"/>
+        <variable
+            name="handler"
+            type="com.muhsanjaved.twowaydatabinding.MainActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.muhsanjaved.twowaydatabinding.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="16dp"
+            android:inputType="textEmailAddress"
+            android:text="@={viewModel.user.email}"
+            android:hint="Enter Email Address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/ed_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@={viewModel.user.username}"
+            android:layout_margin="16dp"
+            android:inputType="textPersonName"
+            android:hint="Enter Username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_gender"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_username">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Gender:"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_gender"
+
+                android:orientation="horizontal"
+                gender="@={viewModel.user.gender}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+<!--                gender="@{viewModel.user.gender}"-->
+<!--                android:checkedButton="@={BindingUtils.genderToButtonId(viewModel.user.gender)}"-->
+<!--                android:checkedButton="@={viewModel.user.gender == Gender.MALE ? @id/rb_male : @id/rb_female}"-->
+
+
+                <RadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+            </RadioGroup>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_gender">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="City"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinner_city"
+                setCity="@={viewModel.user.city}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:entries="@array/cities" />
+<!--            android:selectedItemPosition="@={BindingUtils.cityToPosition(viewModel.user.city)}"-->
+<!--            android:selectedItemPosition="@{viewModel.user.city.ordinal()}"-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_upadte"
+            android:gravity="start"
+            android:layout_margin="48dp"
+            android:onClick="@{handler::runCode}"
+            android:text="Done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_output"
+            android:textSize="24sp"
+            android:layout_margin="16dp"
+            android:text="@{viewModel.user.toString()}"
+            app:layout_constraintBottom_toTopOf="@id/btn_upadte"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_gender"
+            tools:text="Output here...." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
