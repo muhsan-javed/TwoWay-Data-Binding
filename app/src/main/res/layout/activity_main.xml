@@ -108,15 +108,24 @@
                 android:text="City"
                 android:textSize="18sp" />
 
-            <Spinner
+<!--            <Spinner-->
+<!--                android:id="@+id/spinner_city"-->
+<!--                setCity="@={viewModel.user.city}"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                android:entries="@array/cities" />-->
+<!--            android:selectedItemPosition="@={BindingUtils.cityToPosition(viewModel.user.city)}"-->
+<!--            android:selectedItemPosition="@{viewModel.user.city.ordinal()}"-->
+
+            <com.muhsanjaved.twowaydatabinding.MySpinner
                 android:id="@+id/spinner_city"
-                setCity="@={viewModel.user.city}"
+                city="@={viewModel.user.city}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:entries="@array/cities" />
-<!--            android:selectedItemPosition="@={BindingUtils.cityToPosition(viewModel.user.city)}"-->
-<!--            android:selectedItemPosition="@{viewModel.user.city.ordinal()}"-->
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <Button

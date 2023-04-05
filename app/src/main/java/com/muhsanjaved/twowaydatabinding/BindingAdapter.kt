@@ -22,33 +22,36 @@ import androidx.databinding.InverseMethod
 //        view.setText(value)
 //}
 
-// Step 1
-@BindingAdapter("setCity")
-fun setCity(view: Spinner, city: Cities){
-    view.setSelection(city.ordinal)
-}
-// Step 2
-@InverseBindingAdapter(attribute = "setCity")
-fun getCity(view:Spinner): Cities {
-    return Cities.values()[view.selectedItemPosition]
-}
-// Step 3
-@BindingAdapter("setCityAttrChanged")
-fun setCityListener(view:Spinner, listener: InverseBindingListener){
+//region BindingAdapter For setCity
+//// Step 1
+//@BindingAdapter("setCity")
+//fun setCity(view: Spinner, city: Cities){
+//    view.setSelection(city.ordinal)
+//}
+//// Step 2
+//@InverseBindingAdapter(attribute = "setCity")
+//fun getCity(view:Spinner): Cities {
+//    return Cities.values()[view.selectedItemPosition]
+//}
+//// Step 3
+//@BindingAdapter("setCityAttrChanged")
+//fun setCityListener(view:Spinner, listener: InverseBindingListener){
+//
+//    if (view.onItemSelectedListener == null){
+//        view.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                listener.onChange()
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//        }
+//    }
+//}
 
-    if (view.onItemSelectedListener == null){
-        view.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                listener.onChange()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-    }
-}
+//endregion
 
 // Custom
 @BindingAdapter("gender")
